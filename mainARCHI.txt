@@ -1,0 +1,287 @@
+# 🌐 Disaster Communication & Response Network
+
+### *When infrastructure fails, the network becomes the infrastructure.*
+
+A decentralized disaster-response system designed to keep critical information flowing when **cellular networks and Internet infrastructure are unavailable**.
+
+```text
+📱 Mesh → 📡 LoRa → 🧠 AI → 🚑 Rescue Center
+                  ↓
+          🔎 Future Subsurface Link
+```
+
+---
+
+## 🚨 Problem
+
+Natural disasters can destroy communication infrastructure and isolate survivors, especially those trapped beneath collapsed structures.
+
+Our goal is to create an alternative communication path:
+
+```text
+👤 Survivor → 📱 Mesh → 📡 LoRa → 🧠 AI → 🚑 Rescue
+```
+
+---
+
+## 🏗️ Architecture
+
+```text
+                    🚑 Rescue Center
+                           ▲
+                      🧠 AI Layer
+                           ▲
+                         📡 LoRa
+                           ▲
+              📱 ↔ 📱 ↔ 📱 ↔ 📱
+                   Surface Mesh
+                           ▲
+                  🔎 Future Layer
+                           ▲
+                    👤 Survivor
+```
+
+### 📱 1. Surface Mesh
+
+Android devices communicate directly and act as relay nodes.
+
+* Offline device discovery
+* Peer-to-peer communication
+* Multi-hop routing
+* SOS & location sharing
+* Store-and-forward
+* TTL & duplicate prevention
+* Battery/signal-aware routing
+* **Ed25519 device identity**
+* **XChaCha20 message encryption**
+* **Authenticated wake-up beacons**
+
+### 📡 2. LoRa Backbone
+
+ESP32 + LoRa nodes connect the surface mesh to the rescue center.
+
+```text
+📱 → 📱 → 📱 → 📡 LoRa → 🚑
+```
+
+Provides long-range backhaul without relying on cellular infrastructure.
+
+**Security:**
+
+* Signed gateway messages
+* Authenticated nodes
+* AES-256 channel encryption
+
+### 🧠 3. AI Intelligence
+
+AI operates on network and emergency data to assist with:
+
+* 🚨 Emergency prioritization
+* 🧠 Intelligent routing
+* 📡 Network-failure prediction
+* 🗺️ Rescue & resource recommendations
+
+AI routing decisions will use **authenticated network metrics**, preventing nodes from forging information used by the routing system.
+
+### 🔎 4. Subsurface Communication
+
+A future research layer for connecting survivors trapped beneath rubble to the surface network.
+
+Potential approaches:
+
+* Specialized RF
+* Acoustic/vibration communication
+* Deployable relay nodes
+* Hybrid approaches
+
+The subsurface module will require **interface-level authentication** before it can participate in the network.
+
+**Penetration and reliability will be experimentally evaluated rather than assumed.**
+
+---
+
+## 🔐 Security Architecture
+
+Security is integrated across every communication layer.
+
+```text
+📱 SURFACE
+   │
+   ├── Ed25519 Identity
+   ├── XChaCha20 Encryption
+   └── Authenticated Beacons
+   │
+   ▼
+📡 LoRa
+   │
+   ├── Signed Messages
+   └── AES-256 Encryption
+   │
+   ▼
+🧠 AI
+   │
+   └── Authenticated Routing Metrics
+   │
+   ▼
+🔎 SUBSURFACE
+   │
+   └── Module Authentication
+```
+
+### Security priorities
+
+| Phase        | Security                                     |
+| ------------ | -------------------------------------------- |
+| Surface Mesh | Ed25519 identity + XChaCha20 encryption      |
+| LoRa         | Signed gateway messages + AES-256 encryption |
+| AI           | Authenticated routing metrics                |
+| Subsurface   | Interface-level authentication               |
+| Throughout   | Authenticated wake-up beacons                |
+
+---
+
+## 💬 Message Protocol
+
+Messages use a structured format:
+
+```text
+Message ID
+Sender ID
+Message Type
+Timestamp
+Priority
+TTL
+Location
+Payload
+Digital Signature
+```
+
+Possible message types:
+
+```text
+SOS
+TEXT
+LOCATION
+MEDICAL
+NODE_STATUS
+DETECTION
+ACKNOWLEDGEMENT
+```
+
+---
+
+## 🧠 Routing
+
+Routing can consider:
+
+```text
+Signal Strength
+Battery Level
+Distance
+Connection Stability
+Node Connectivity
+Network Congestion
+```
+
+The project will compare:
+
+**Traditional/Flooding vs Rule-Based vs AI-Assisted Routing**
+
+Security mechanisms will ensure that critical routing metrics originate from **authenticated nodes**.
+
+---
+
+## 🧪 Evaluation
+
+| Metric                 | Purpose                           |
+| ---------------------- | --------------------------------- |
+| Packet Delivery        | Reliability                       |
+| Latency                | Response speed                    |
+| Hop Count              | Routing efficiency                |
+| Packet Loss            | Network quality                   |
+| Battery Usage          | Node lifetime                     |
+| Recovery Time          | Fault tolerance                   |
+| LoRa Range             | Backhaul capability               |
+| AI Improvement         | Routing efficiency                |
+| Security Overhead      | Cost of authentication/encryption |
+| Subsurface Reliability | Experimental capability           |
+
+---
+
+## 🛠️ Technology Stack
+
+**Mobile**
+
+* Kotlin
+* Android
+* Bluetooth / BLE
+* Wi-Fi-based P2P where appropriate
+* Offline local storage
+
+**Security**
+
+* Ed25519
+* XChaCha20
+* AES-256
+* Digital signatures
+* Authenticated beacons
+
+**Hardware**
+
+* ESP32
+* LoRa modules
+* GPS
+* Battery-powered relay nodes
+
+**AI**
+
+* Python
+* Machine Learning
+* Classification
+* Routing models
+* Optimization algorithms
+
+**Rescue System**
+
+* Node.js
+* Web/Laptop dashboard
+* Database
+* REST/WebSocket where connectivity is available
+
+---
+
+## 🚧 Development Roadmap
+
+```text
+1. 📱 Android Mesh
+      ↓
+2. 🔐 Identity + Encryption
+      ↓
+3. 🔗 Multi-Hop + Store-and-Forward
+      ↓
+4. 📍 SOS + Location
+      ↓
+5. 📡 ESP32 + LoRa
+      ↓
+6. 🚑 Rescue Command Center
+      ↓
+7. 🔐 LoRa Security
+      ↓
+8. 🧠 AI Intelligence
+      ↓
+9. 🔎 Subsurface Communication
+      ↓
+10. 🔐 Subsurface Authentication
+      ↓
+11. 🧪 Full Integration & Testing
+```
+
+---
+
+## 🎯 Goal
+
+> **Build a secure, resilient and decentralized communication network that can continue delivering critical information when conventional infrastructure fails.**
+
+### **👤 Survivor → 📱 Mesh → 📡 LoRa → 🧠 AI → 🚑 Rescue**
+
+**Secure. Resilient. Decentralized.**
